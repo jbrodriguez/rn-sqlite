@@ -1,0 +1,18 @@
+{
+  "name": "rn-sqlite",
+  "description": "A react native android wrapper for SQLite",
+  "version": "0.1.0",
+  "main": "index.js",
+  "keywords": [
+  	"react-native",
+    "react-component",
+    "ios",
+    "android"
+  ],
+  "author": "Juan B. Rodriguez",
+  "license": "MIT",
+  "homepage": "https://github.com/jbrodriguez/rn-sqlite",
+  "dependencies": {
+    "react-native": ">= 0.11.0"
+  }
+}
