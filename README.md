@@ -6,17 +6,22 @@ A react native wrapper for SQLite
 
 A simple wrapper for SQLite, for both iOS and Android.
 
-Based on (https://github.com/jbrodriguez/react-native-android-sqlite).
+(Android code Based on [react-native-android-sqlite](https://github.com/jbrodriguez/react-native-android-sqlite)).
 
-## Setup
-
-* Install Module
+## Installation
 
 ```bash
 npm install --save jbrodriguez/rn-sqlite
 ```
 
 ### Android
+
+#### [rnpm](https://github.com/rnpm/rnpm) option
+```bash
+rnpm link
+```
+
+#### Manual option
 * `android/settings.gradle`
 
 ```gradle
@@ -39,7 +44,7 @@ dependencies {
 ```java
 ...
 
-import io.jbrodriguez.react.RNSQLiteModule; // <--- import 
+import io.jbrodriguez.react.RNSQLitePackage; // <--- import 
 
 public class MainActivity extends ReactActivity {
 
@@ -53,24 +58,29 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new RNSQLiteModule()  // <--- add here
+            new RNSQLitePackage()  // <--- add here
         );
     }
 }
 ```
 
 ### iOS
-In XCode, in the project navigator, right click Libraries ➜ Add Files to [your project's name] Go to node_modules ➜ rn-sqlite and add the .xcodeproj file
 
-In XCode, in the project navigator, select your project, add libRNSQLite.a from the RNSQLite.xcodeproj/Products folder to your project's Build Phases ➜ Link Binary With Libraries.
+#### [rnpm](https://github.com/rnpm/rnpm) option
+```bash
+rnpm link
+```
 
-Click RNSQLite.xcodeproj you added before in the project navigator and go the Build Settings tab. Make sure 'All' is toggled on (instead of 'Basic').
-
+#### Manual option
+* In XCode, in the project navigator, right click Libraries and select **Add files to "_NameOfYourProject_"**.
+* Browse to `node_modules/rn-sqlite/ios` and select the folder **RNSQLite.xcodeproj**.
+* Open the RNSQLite.xcodeproj/Products and add libRNSQLite.a to your project's Build Phases ➜ Link Binary With Libraries
+* Click RNSQLite.xcodeproj you added before in the project navigator and go the Build Settings tab. Make sure 'All' is toggled on (instead of 'Basic').
 Look for Header Search Paths and make sure it contains both $(SRCROOT)/../../react-native/React and $(SRCROOT)/../../React - mark both as recursive.
 
 ## Usage
 
-- Android
+- Android <br>
 This library depends on [SQLiteAssetHelper](https://github.com/jgilfelt/android-sqlite-asset-helper).
 
 The idea is that you `import` your previously created database as an application asset.
@@ -86,7 +96,7 @@ So, the first step involves copying your sqlite db to the following folder
 ```
 Substitute `<YourProject>` with the folder where your app resides, i.e. AwesomeProject.
 
-- iOS
+- iOS <br>
 Drag and Drop or add your sqlite db to your XCode project.
 
 ## API
