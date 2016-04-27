@@ -95,7 +95,7 @@ Substitute `<YourProject>` with the folder where your app resides, i.e. AwesomeP
 Drag and Drop or add your sqlite db to your XCode project.
 
 ## API
-You can start interacting with the db, through 4 public functions:
+The library exposes 4 api endpoints:
 
 - init
 - query
