@@ -10,18 +10,18 @@ A simple wrapper for SQLite, for both iOS and Android.
 
 ## Installation
 
-```bash
-npm install --save jbrodriguez/rn-sqlite
-```
-
-### Android
-
-#### [rnpm](https://github.com/rnpm/rnpm) option
+### Automatic option (requires [rnpm](https://github.com/rnpm/rnpm) )
 ```bash
 rnpm link
 ```
 
-#### Manual option
+### Manual option
+```bash
+npm install --save jbrodriguez/rn-sqlite
+```
+
+#### Android
+
 * `android/settings.gradle`
 
 ```gradle
@@ -64,19 +64,14 @@ public class MainActivity extends ReactActivity {
 }
 ```
 
-### iOS
+#### iOS
 
-#### [rnpm](https://github.com/rnpm/rnpm) option
-```bash
-rnpm link
-```
-
-#### Manual option
 * In XCode, in the project navigator, right click Libraries and select **Add files to "_NameOfYourProject_"**.
 * Browse to `node_modules/rn-sqlite/ios` and select the folder **RNSQLite.xcodeproj**.
 * Open the RNSQLite.xcodeproj/Products and add libRNSQLite.a to your project's Build Phases ➜ Link Binary With Libraries
 * Click RNSQLite.xcodeproj you added before in the project navigator and go the Build Settings tab. Make sure 'All' is toggled on (instead of 'Basic').
 Look for Header Search Paths and make sure it contains both $(SRCROOT)/../../react-native/React and $(SRCROOT)/../../React - mark both as recursive.
+
 
 ## Usage
 
@@ -111,27 +106,23 @@ You can start interacting with the db, through 4 public functions:
 The database must be initialized before any other call takes place
 
 ```js
-import SQLite from 'react-native-android-sqlite'
+import SQLite from 'rn-sqlite'
 
 const databaseName = 'app.db'
 
-SQLite.init(databaseName).then( () => {
-	console.log('database initialized.')
-})
+SQLite.init(databaseName).then( _ => console.log('database initialized.') )
 ```
 
 ### Exec
 pre-requisite: the db must have been initialized
 
 ```js
-import SQLite from 'react-native-android-sqlite'
+import SQLite from 'rn-sqlite'
 
 const sql = 'INSERT INTO todo(name, completed) VALUES (?, ?)'
 const params = ["Create rn-sqlite", 1]
 
-SQLite.exec(sql, params)then( () => {
-	console.log('row inserted.')
-})
+SQLite.exec(sql, params).then( _ => console.log('row inserted.') )
 
 ```
 
@@ -139,14 +130,12 @@ SQLite.exec(sql, params)then( () => {
 pre-requisite: the db must have been initialized
 
 ```js
-import SQLite from 'react-native-android-sqlite'
+import SQLite from 'rn-sqlite'
 
 const sql = 'SELECT * FROM todo WHERE completed = ?'
 const params = [1]
 
-SQLite.query(sql, params).then( (data) => {
-	console.log('retrieved: ', data)
-})
+SQLite.query(sql, params).then( data => console.log('retrieved: ', data) )
 // retrieved: {"completed": 1, "name": "Create rn-sqlite"}
 ```
 
@@ -154,11 +143,9 @@ SQLite.query(sql, params).then( (data) => {
 pre-requisite: the db must have been initialized
 
 ```js
-import SQLite from 'react-native-android-sqlite'
+import SQLite from 'rn-sqlite'
 
-SQLite.close().then( () => {
-    console.log('database closed')
-})
+SQLite.close().then( _ => console.log('database closed') )
 ```
 
 ## Known Issues
