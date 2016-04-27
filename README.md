@@ -10,15 +10,21 @@ A simple wrapper for SQLite, for both iOS and Android.
 
 ## Installation
 
+First install the module
+
+```bash
+npm install --save jbrodriguez/rn-sqlite
+```
+
+Then link the library via any of the following two options:
+
 ### Automatic option (requires [rnpm](https://github.com/rnpm/rnpm) )
 ```bash
 rnpm link
 ```
 
 ### Manual option
-```bash
-npm install --save jbrodriguez/rn-sqlite
-```
+
 
 #### Android
 
