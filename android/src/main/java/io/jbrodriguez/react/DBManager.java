@@ -70,7 +70,7 @@ public final class DBManager extends ReactContextBaseJavaModule {
 			@Override
 			protected void doInBackgroundGuarded(Void ...params) {
 				WritableArray data = Arguments.createArray();
-
+				WritableMap error = null;
 				// FLog.w(ReactConstants.TAG, "dbmanager.query.sql=%s", sql);
 				// FLog.w(ReactConstants.TAG, "dbmanager.query.values.size()=%d", values.size());
 
@@ -78,10 +78,14 @@ public final class DBManager extends ReactContextBaseJavaModule {
 					data = mDb.query(sql, values);
 				} catch(Exception e) {
 					FLog.w(ReactConstants.TAG, "Exception in database query: ", e);
-					callback.invoke(ErrorUtil.getError(null, e.getMessage()), null);
+					error = ErrorUtil.getError(null, e.getMessage());
 				}
 
-				callback.invoke(null, data);
+				if (error != null) {
+					callback.invoke(error, null);
+				} else {
+					callback.invoke(null, data);
+				}
 			}
 		}.execute();
 	}
@@ -91,14 +95,20 @@ public final class DBManager extends ReactContextBaseJavaModule {
 		new GuardedAsyncTask<Void, Void>(getReactApplicationContext()) {
 			@Override
 			protected void doInBackgroundGuarded(Void ...params) {
+				WritableMap error = null;
+
 				try {
 					mDb.exec(sql, values);
 				} catch(Exception e) {
 					FLog.w(ReactConstants.TAG, "Exception in database exec: ", e);
-					callback.invoke(ErrorUtil.getError(null, e.getMessage()), null);
+					error = ErrorUtil.getError(null, e.getMessage());
 				}
 
-				callback.invoke();
+				if (error != null) {
+					callback.invoke(error, null);
+				} else {
+					callback.invoke();
+				}
 			}
 		}.execute();
 	}
@@ -108,16 +118,21 @@ public final class DBManager extends ReactContextBaseJavaModule {
 		new GuardedAsyncTask<Void, Void>(getReactApplicationContext()) {
 			@Override
 			protected void doInBackgroundGuarded(Void ...params) {
+				WritableMap error = null;
+
 				try {
 					mDb.close();
 				} catch(Exception e) {
 					FLog.w(ReactConstants.TAG, "Exception in database close: ", e);
-					callback.invoke(ErrorUtil.getError(null, e.getMessage()), null);
+					error = ErrorUtil.getError(null, e.getMessage());
 				}
 
-				callback.invoke();
+				if (error != null) {
+					callback.invoke(error, null);
+				} else {
+					callback.invoke();
+				}
 			}
 		}.execute();
 	}	
-
 }
