@@ -13,6 +13,15 @@
   "license": "MIT",
   "homepage": "https://github.com/jbrodriguez/rn-sqlite",
   "dependencies": {
-    "react-native": ">= 0.11.0"
+	  "rnpm": "1.6.5",
+      "xcode": "0.8.4"
+  },
+  "rnpm": {
+    "commands": {
+      "postlink": "node_modules/rn-sqlite/scripts/rnpm-postlink.js"
+    },
+    "ios": {
+      "project": "ios/RNSQLite.xcodeproj"
+    }
   }
 }
