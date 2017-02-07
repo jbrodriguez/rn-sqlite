@@ -1,8 +1,8 @@
 #if __has_include(<React/RCTBridge.h>)
-#import "React/RCTLog.h"
-#import "React/RCTUtils.h"
-#import "React/RCTBridge.h"
-#import "React/RCTEventDispatcher.h"
+#import <React/RCTLog.h>
+#import <React/RCTUtils.h>
+#import <React/RCTBridge.h>
+#import <React/RCTEventDispatcher.h>
 #else
 #import "RCTLog.h"
 #import "RCTUtils.h"
