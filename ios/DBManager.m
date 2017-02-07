@@ -1,8 +1,15 @@
+#if __has_include(<React/RCTBridge.h>)
+#import "React/RCTLog.h"
+#import "React/RCTUtils.h"
+#import "React/RCTBridge.h"
+#import "React/RCTEventDispatcher.h"
+#else
 #import "RCTLog.h"
 #import "RCTUtils.h"
-#import <Foundation/Foundation.h>
 #import "RCTBridge.h"
 #import "RCTEventDispatcher.h"
+#endif
+#import <Foundation/Foundation.h>
 #import "DBManager.h"
 #import "SQLiteManager.h"
 
@@ -57,7 +64,7 @@ RCT_EXPORT_METHOD(init:(NSString *)dbName callback:(RCTResponseSenderBlock)callb
 	    if (self) {
 	    	self.db = [[SQLiteManager alloc] initWithDatabaseFilename:dbName];
 	    }
-	    
+
 	    callback(@[[NSNull null], @"System is nominal"]);
     });
 }
